@@ -16,32 +16,18 @@ const Stack = createNativeStackNavigator();
 
 export const AppNavigation = () => {
 
-    const onPresHandler = () => {
 
-    }
-    const headerRight = () => {
-        return (
-            <AntDesign.Button name="pluscircleo" onPress={onPresHandler}>
-                <Text>As</Text>
-            </AntDesign.Button>
-        );
-    }
+
 
     return (
         <NavigationContainer>
             <ConfiguredStackNavigator>
                 <Stack.Screen name="Main"
                               component={MainScreen}
-                              options={{
-                                  title: "My Blog",
-                                  headerRight:  headerRight
-                              }}/>
+                              options={MainScreen.options}/>
                 <Stack.Screen name="Post"
                               component={PostScreen}
-                              options={({route}) => ({
-                                  title: `Post on ${moment(route.params.date).format("DD.MM.YYYY")}`,
-                                  gestureEnabled: true
-                              })}
+                              options={PostScreen.options}
                 />
                 <Stack.Screen name="About" component={AboutScreen}/>
             </ConfiguredStackNavigator>

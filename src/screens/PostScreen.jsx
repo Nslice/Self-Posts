@@ -3,6 +3,7 @@ import {StyleSheet, View, Text, Image, Button, ScrollView, Alert} from "react-na
 import {DATA} from "src/data";
 import {Theme} from "src/theme";
 import GestureRecognizer from "react-native-swipe-gestures";
+import moment from "moment";
 
 
 
@@ -40,6 +41,14 @@ export const PostScreen = ({navigation, route}) => {
         </GestureRecognizer>
     );
 };
+
+
+PostScreen.options = ({route}) => ({
+    title: `Post on ${moment(route.params.date).format("DD.MM.YYYY")}`,
+    gestureEnabled: true // для ios
+});
+
+
 
 
 const css = StyleSheet.create({
