@@ -1,6 +1,6 @@
 /**
  * @readonly
- * @enum {string}
+ * Цвета темы
  */
 export const Theme = {
     MAIN_COLOR: "#303f9f",

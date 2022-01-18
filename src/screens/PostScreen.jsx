@@ -1,13 +1,14 @@
 import React from "react";
 import {StyleSheet, View, Text, Image, Button, ScrollView, Alert} from "react-native";
-import {DATA} from "src/data";
-import {Theme} from "src/theme";
-import GestureRecognizer from "react-native-swipe-gestures";
+import {HeaderButtons, Item} from "react-navigation-header-buttons";
 import moment from "moment";
+import {Theme} from "src/theme";
+import {AppHeaderIcon} from "src/components/AppHeaderIcon";
+import {DATA} from "src/data";
 
 
 
-export const PostScreen = ({navigation, route}) => {
+export const PostScreen = ({route}) => {
     const postId = route.params.postId;
     const post = DATA.find(x => x.id === postId);
 
@@ -28,41 +29,55 @@ export const PostScreen = ({navigation, route}) => {
     };
 
     return (
-        <GestureRecognizer onSwipeRight={(state) => navigation.goBack()}>
-            <ScrollView style={css.container}>
-                <Image style={css.image} source={{uri: post.img}}/>
-                <View style={css.textWrap}>
-                    <Text style={css.title}>
-                        {post.text.repeat(50)}
-                    </Text>
-                </View>
+        <ScrollView style={css.container}>
+            <Image style={css.image} source={{uri: post.img}}/>
+            <View style={css.textWrap}>
+                <Text style={css.title}>
+                    {post.text.repeat(50)} /* TODO: убрать */
+                </Text>
+            </View>
+            <View style={css.button}>
                 <Button title="Delete" color={Theme.DANGER_COLOR} onPress={removePost}/>
-            </ScrollView>
-        </GestureRecognizer>
+            </View>
+        </ScrollView>
     );
 };
 
 
 PostScreen.options = ({route}) => ({
     title: `Post on ${moment(route.params.date).format("DD.MM.YYYY")}`,
-    gestureEnabled: true // для ios
+    gestureEnabled: true,
+    headerRight: (props) => <HeaderRight isBooked={route.params.isBooked}/>
 });
 
-
+const HeaderRight = ({isBooked}) => {
+    return (
+        <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
+            <Item title="Take Photo"
+                  iconName={isBooked ? "ios-star" :"ios-star-outline"}
+                  onPress={() => console.log("booked start")}
+            />
+        </HeaderButtons>
+    );
+};
 
 
 const css = StyleSheet.create({
     container: {
-        marginVertical: 5
+        marginBottom: 5,
     },
     image: {
         width: "100%",
         height: 200
     },
     textWrap: {
-        padding: 10
+        paddingVertical: 5,
+        paddingLeft: 10,
     },
     title: {
         fontFamily: "open-sans-regular"
+    },
+    button: {
+       marginHorizontal: 3
     }
 });

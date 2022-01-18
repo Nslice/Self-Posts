@@ -1,71 +1,43 @@
 import React from "react";
-import {StyleSheet, View, Text, Button, FlatList, Platform} from "react-native";
-import {Post} from "src/components/Post";
-import { Ionicons } from "@expo/vector-icons";
+import {HeaderButtons, Item} from "react-navigation-header-buttons";
+import {AppHeaderIcon} from "src/components/AppHeaderIcon";
+import {HeaderMenuButton} from "src/components/HeaderMenuButton";
+import {PostList} from "src/components/PostList";
 import {DATA} from "src/data";
-import {AntDesign} from "@expo/vector-icons";
-import {HeaderButton, HeaderButtons, Item} from "react-navigation-header-buttons";
-import {Theme} from "src/theme";
 
 
 
 export const MainScreen = ({navigation}) => {
     const openPost = (post) => {
-        console.log("post", post);
-        navigation.navigate("Post", {postId: post.id, date: post.date});
+        navigation.navigate("PostScreen", {
+                postId: post.id,
+                date: post.date,
+                isBooked: post.booked
+            }
+        );
     };
 
-
     return (
-        <View style={css.wrapper}>
-            <FlatList data={DATA}
-                      keyExtractor={x => x.id}
-                      renderItem={x => <Post data={x.item} onOpen={openPost}/>}/>
-        </View>
+        <PostList data={DATA} onOpen={openPost}/>
     );
 };
 
 
-MainScreen.options = () => ({
-    title: "My Blog",
-    headerRight:  headerRight
+MainScreen.options = ({navigation, route}) => ({
+    title: "My Posts",
+    headerLeft: (props) => <HeaderMenuButton navigation={navigation}/>,
+    headerRight: (props) => <HeaderRight/>
 });
 
-
-const onPresHandler = () => {
-
-}
-
-const headerRight = () => {
-    return (
-        <Buttons/>
-    );
-}
-
-const Buttons = () => {
+const HeaderRight = () => {
     return (
         <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
-            <Item title="TakePhoto"/>
+            <Item title="Take Photo"
+                  iconName="ios-camera"
+                  onPress={() => {
+                      console.log("photo Header Button");
+                  }}
+            />
         </HeaderButtons>
     );
-}
-
-const AppHeaderIcon = (props) => {
-    return (
-        <HeaderButton iconSize={24}
-                      IconComponent={Ionicons}
-                      color="red"
-                      {...props}/>
-
-    );
 };
-
-
-
-
-const css = StyleSheet.create({
-    wrapper: {
-        paddingTop: 3,
-        paddingLeft: 10
-    },
-});

@@ -4,7 +4,7 @@ export const DATA = [
         img:
             'https://static.coindesk.com/wp-content/uploads/2019/01/shutterstock_1012724596-860x430.jpg',
         text: 'Awesome text for post 1',
-        date: new Date().toJSON(),
+        date: new Date(2015, 4, 24).toJSON(),
         booked: true
     },
     {
@@ -12,7 +12,7 @@ export const DATA = [
         img:
             'https://cdn.londonandpartners.com/visit/general-london/areas/river/76709-640x360-houses-of-parliament-and-london-eye-on-thames-from-above-640.jpg',
         text: 'Awesome text for post 2',
-        date: new Date().toJSON(),
+        date: new Date(2019, 11, 4).toJSON(),
         booked: true
     },
     {

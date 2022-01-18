@@ -21,11 +21,9 @@ export const Post = ({data, onOpen}) => {
 };
 
 
-
-// TODO: покликать стили
 const css = StyleSheet.create({
     post: {
-        marginBottom: 15,
+        marginBottom: 5,
         overflow: "hidden"
     },
     image: {
