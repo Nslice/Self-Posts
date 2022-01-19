@@ -22,6 +22,7 @@ const MaterialBottomTab = createMaterialBottomTabNavigator();
 const MaterialBottomTabNavigator = () => {
     return (
         <MaterialBottomTab.Navigator initialRouteName="MainScreenNavigator"
+                                     activeColor={"#fff"}
                                      barStyle={{backgroundColor: Theme.MAIN_COLOR}}
                                      shifting={true}
         >
@@ -51,7 +52,13 @@ const MaterialBottomTabNavigator = () => {
 const SimpleBottomTabNavigator = () => {
     return (
         <BottomTab.Navigator initialRouteName="MainScreenNavigator"
-                             tabBarStyle={{backgroundColor: "#fff"}}
+                             screenOptions={{
+                                 headerShown: false,
+                                 tabBarActiveTintColor: Theme.MAIN_COLOR,
+                                 tabBarStyle: {
+                                     backgroundColor: "#fff"
+                                 }
+                             }}
         >
             <BottomTab.Screen name="MainScreenNavigator"
                               component={MainScreenNavigator}
@@ -73,8 +80,8 @@ const SimpleBottomTabNavigator = () => {
 
 
 /*
- Создал навигатор для одного экрана, чтобы была возможность настроить хедер.
- Этот скрин используется в BottomNavigator в котором нет возможности настроить хедер
+ Создал навигаторы для одного экрана, чтобы была возможность настроить хедер.
+ Этот скрин используется в MaterialBottomNavigator в котором нет возможности настроить хедер.
  */
 const MainScreenNavigator = () => {
     return (
@@ -103,7 +110,7 @@ const BookedScreenNavigator = () => {
 };
 
 const navigatorScreenOptions = () => ({
-    headerStyle: Platform.select({android: css.headerAndroid, ios: css.headerIos}),
+    headerStyle: (Platform.OS === "ios") ? css.headerIos : css.headerAndroid,
     headerTintColor: (Platform.OS === "ios") ? Theme.MAIN_COLOR : "#fff",
     headerShown: true
 });

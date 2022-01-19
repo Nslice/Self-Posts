@@ -26,16 +26,16 @@ export const MainScreen = ({navigation}) => {
 MainScreen.options = ({navigation, route}) => ({
     title: "My Posts",
     headerLeft: (props) => <HeaderMenuButton navigation={navigation}/>,
-    headerRight: (props) => <HeaderRight/>
+    headerRight: (props) => <HeaderRight navigation={navigation}/>
 });
 
-const HeaderRight = () => {
+const HeaderRight = ({navigation}) => {
     return (
         <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
             <Item title="Take Photo"
                   iconName="ios-camera"
                   onPress={() => {
-                      console.log("photo Header Button");
+                      navigation.navigate("CreateScreen");
                   }}
             />
         </HeaderButtons>

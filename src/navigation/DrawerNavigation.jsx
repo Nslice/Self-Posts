@@ -1,7 +1,8 @@
 import React from "react";
 import {createDrawerNavigator} from "@react-navigation/drawer";
 import {StackMainNavigator} from "./StackMainNavigator";
-import {AboutScreen} from "../screens/AboutScreen";
+import {AboutScreen} from "src/screens/AboutScreen";
+import {CreateScreen} from "src/screens/CreateScreen";
 
 
 
@@ -15,6 +16,7 @@ export const DrawerNavigator = () => {
                               headerShown: false,
                               drawerPosition: "left"
                           }}
+                          backBehavior="history"
         >
             <Drawer.Screen name="DrawerMainTab"
                            component={StackMainNavigator}
@@ -25,6 +27,14 @@ export const DrawerNavigator = () => {
             <Drawer.Screen name="DrawerAboutTab"
                            component={AboutScreen}
                            options={{
+                               title: "About",
+                               headerShown: true
+                           }}
+            />
+            <Drawer.Screen name="CreateScreen"
+                           component={CreateScreen}
+                           options={{
+                               title: "Create",
                                headerShown: true
                            }}
             />

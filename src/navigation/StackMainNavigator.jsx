@@ -1,16 +1,16 @@
-import {Platform, StyleSheet} from "react-native";
-import {Theme} from "../theme";
-import {BottomTabNavigator} from "./BottomTabNavigator";
-import {PostScreen} from "../screens/PostScreen";
 import React from "react";
+import {Platform, StyleSheet} from "react-native";
 import {createStackNavigator} from "@react-navigation/stack";
+import {Theme} from "src/theme";
+import {BottomTabNavigator} from "./BottomTabNavigator";
+import {PostScreen} from "src/screens/PostScreen";
 
 
 
 const Stack = createStackNavigator();
 
 
-const StackMainNavigator = () => {
+export const StackMainNavigator = () => {
     return (
         <Stack.Navigator initialRouteName="BottomTab"
                          screenOptions={{
@@ -42,6 +42,3 @@ const css = StyleSheet.create({
         backgroundColor: "#fff"
     }
 });
-
-
-export {StackMainNavigator};
