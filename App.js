@@ -1,7 +1,7 @@
 import React from "react";
 import AppLoading from "expo-app-loading";
 import {bootstrap} from "src/bootstrap";
-import {AppNavigation} from "src/AppNavigation";
+import {AppNavigation} from "src/navigation/AppNavigation";
 
 
 
